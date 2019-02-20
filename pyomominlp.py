@@ -10,6 +10,9 @@ import random
 #
 ######################################################
 
+
+##### problem setup
+
 # desired intervals
 
 # We will divide [0,1] in P sections. Then, midpoints for each section will be calculated
@@ -23,27 +26,15 @@ midpoint = np.arange(p, dtype=np.float)
 delta = 1 / p
 
 # setting intervals and midpoints
-
 interval[0] = delta
 midpoint[0] = delta * 0.5
-
 
 for i in range(1,p):
   interval[i] = interval[i-1] + delta
   midpoint[i] = midpoint[i-1] + delta
 
-
+# model
 model = ConcreteModel()
-
-def initA (model, i) :
-  if i > p:
-    return Set.End
-  return i
-
-def initB (model, i) :
-  if i > p:
-    return Set.End
-  return random.randrange(-999999, 999999)
 
 # variables
 model.I = range(p)

@@ -1,11 +1,19 @@
-# abstract1.py
-from __future__ import division
 from pyomo.environ import *
 import numpy as np
 import random
 
+################# problem definition #################
+#   min sum ((a_i * x_i^2 + b_i * x_i) * m_i) 
+#   s.t. a_i ** 2 - 1 >= 0
+#   a_i in {-1, 1}
+#   b_i in R
+#
+######################################################
 
 # desired intervals
+
+# We will divide [0,1] in P sections. Then, midpoints for each section will be calculated
+
 p = 2 # P
 interval = np.arange(p, dtype=np.float)
 midpoint = np.arange(p, dtype=np.float)
@@ -55,3 +63,9 @@ def ax_constraint_rule(model,i):
 
 # the next line creates one constraint for each member of the set model.I
 model.AxbConstraint = Constraint(model.I, rule=ax_constraint_rule)
+
+# In case you need extra information from BARON
+# uncomment the following lines and run normally (python pymonminlp.py)
+
+#opt = SolverFactory('baron', executable='C:\\Users\\diego.isla\\AppData\\Local\\Programs\\Python\\Python37\\baron.exe')
+#result = opt.solve(model, tee=True)

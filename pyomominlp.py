@@ -67,5 +67,5 @@ model.AxbConstraint = Constraint(model.I, rule=ax_constraint_rule)
 # In case you need extra information from BARON
 # uncomment the following lines and run normally (python pymonminlp.py)
 
-#opt = SolverFactory('baron', executable='C:\\Users\\diego.isla\\AppData\\Local\\Programs\\Python\\Python37\\baron.exe')
+#opt = SolverFactory('baron', executable='YOUR/PATH/TO/BARON')
 #result = opt.solve(model, tee=True)
